@@ -1,4 +1,4 @@
-const library = {};
+const library = [];
 
     function Book(title, author, isRead =false) {
         this.title = title;
@@ -6,14 +6,14 @@ const library = {};
         this.isRead = isRead;
     }
 
-    function addbook() {
+    function addBook() {
         const title = prompt("Enter book title:");
         const author = prompt("Enter book author:");
         const isReadInput = prompt("Have you read this book? (yes/no):");
 
         const isRead = isReadInput.toLowerCase() === 'yes';
 
-        const newBook = new book(title, author, isRead);
+        const newBook = new Book(title, author, isRead);
         library.push(newBook);
         alert(`${title}" by ${author} added to your library.`);
     }
@@ -33,7 +33,7 @@ const library = {};
 
         alert("Books have been listen in the console!");
     }
-    function markAsRead(title) {
+    function markAsRead(titletoMark) {
         const book = library.find(b => b.title.toLowerCase() === title.toLowerCase());
         if (book) {
             book.isRead = true;
@@ -42,3 +42,36 @@ const library = {};
             alert("Book not found");
         }
     }
+
+    let running = true;
+
+    while (running)  {
+        const choice = prompt(`
+
+        Book Tracker
+        1. Add Book
+        2. List Books 
+        3. Mark Book as Read 
+        4. Exit
+
+        Enter your choice:`);
+        switch (choice) {
+            case '1':
+                addBook();
+                break;
+            case '2':
+                listBooks();
+                break;
+            case '3':
+                const titleToMark = prompt("Enter the title of the book to mark as read:");
+                markAsRead(title);
+                break;
+            case '4':
+                running = false;
+                alert("Goodbye!");
+                break;
+            default:
+                alert("Invalid choice,");
+        }
+    }
+            
